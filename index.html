@@ -33,7 +33,465 @@
     <section class="hero">
       <img src="images/your-photo.jpg" alt="Ian Murphy" class="profile-pic">
       <div>
-        <h2>Hi, I'm Ian</h2>
+        <h2>Hi, I'm Ian</h2>body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #0f0f0f;
+  color: #f5f5f5;
+  line-height: 1.6;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Animated Background */
+.animated-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%);
+  overflow: hidden;
+}
+
+.animated-background::before {
+  content: '';
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  top: -50%;
+  left: -50%;
+  background-image: 
+    radial-gradient(circle at 20% 50%, rgba(0, 255, 204, 0.03) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(0, 255, 204, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 40% 20%, rgba(0, 204, 153, 0.04) 0%, transparent 50%);
+  animation: backgroundMove 20s ease-in-out infinite;
+}
+
+@keyframes backgroundMove {
+  0%, 100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  50% {
+    transform: translate(-50px, -50px) rotate(5deg);
+  }
+}
+
+/* Header & Navigation */
+header nav {
+  background-color: rgba(26, 26, 26, 0.95);
+  backdrop-filter: blur(10px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  box-shadow: 0 2px 10px rgba(0, 255, 204, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+nav h1 {
+  margin: 0;
+  font-size: 1.5rem;
+  background: linear-gradient(135deg, #00ffcc 0%, #00cc99 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  cursor: default;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+  margin: 0;
+  padding: 0;
+}
+
+nav a {
+  color: #f5f5f5;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  position: relative;
+}
+
+nav a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: #00ffcc;
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+}
+
+nav a:hover::after {
+  width: 80%;
+}
+
+nav a:hover {
+  color: #00ffcc;
+  background-color: rgba(0, 255, 204, 0.1);
+}
+
+/* Main Content */
+main {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  min-height: calc(100vh - 200px);
+  position: relative;
+}
+
+/* Hero Section */
+.hero {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+  padding: 2rem;
+  background: rgba(26, 26, 26, 0.8);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  border: 1px solid rgba(0, 255, 204, 0.2);
+  margin-bottom: 2rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.profile-pic {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  border: 3px solid #00ffcc;
+  box-shadow: 0 0 30px rgba(0, 255, 204, 0.4);
+  object-fit: cover;
+  transition: all 0.3s ease;
+  animation: profilePulse 3s ease-in-out infinite;
+}
+
+@keyframes profilePulse {
+  0%, 100% {
+    box-shadow: 0 0 30px rgba(0, 255, 204, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(0, 255, 204, 0.6);
+  }
+}
+
+.profile-pic:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 50px rgba(0, 255, 204, 0.7);
+}
+
+.hero h2 {
+  color: #00ffcc;
+  margin-top: 0;
+  font-size: 2rem;
+}
+
+.hero p {
+  margin: 1rem 0;
+}
+
+.hero strong {
+  color: #00ffcc;
+}
+
+/* Certifications Section */
+.certifications {
+  margin-top: 3rem;
+  padding: 2rem;
+  background: rgba(26, 26, 26, 0.8);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  border: 1px solid rgba(0, 255, 204, 0.2);
+}
+
+.certifications h2 {
+  color: #00ffcc;
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 1.8rem;
+}
+
+.cert-badges {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.cert-badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  padding: 1.5rem;
+  background: rgba(26, 26, 26, 0.6);
+  border-radius: 12px;
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+  max-width: 200px;
+}
+
+.cert-badge:hover {
+  transform: translateY(-10px);
+  border-color: #00ffcc;
+  box-shadow: 0 10px 30px rgba(0, 255, 204, 0.3);
+  background: rgba(26, 26, 26, 0.9);
+}
+
+.cert-badge img {
+  width: 150px;
+  height: 150px;
+  object-fit: contain;
+  margin-bottom: 1rem;
+  transition: transform 0.3s ease;
+}
+
+.cert-badge:hover img {
+  transform: scale(1.1);
+}
+
+.cert-name {
+  color: #f5f5f5;
+  font-weight: 600;
+  text-align: center;
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+}
+
+/* Project Cards & Articles */
+.project-card, article {
+  background: rgba(26, 26, 26, 0.8);
+  backdrop-filter: blur(10px);
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  border-left: 4px solid #00ffcc;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.project-card:hover, article:hover {
+  transform: translateX(10px);
+  box-shadow: 0 6px 25px rgba(0, 255, 204, 0.2);
+  border-left-width: 6px;
+  background: rgba(26, 26, 26, 0.95);
+}
+
+.project-card h3, article h3 {
+  color: #00ffcc;
+  margin-top: 0;
+}
+
+/* Coming Soon Section */
+.coming-soon {
+  background: rgba(26, 26, 26, 0.8);
+  backdrop-filter: blur(10px);
+  padding: 2rem;
+  border-radius: 12px;
+  border: 1px solid rgba(0, 255, 204, 0.2);
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.coming-soon h3 {
+  color: #00ffcc;
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+}
+
+.coming-soon ul {
+  text-align: left;
+  max-width: 600px;
+  margin: 1.5rem auto;
+  list-style-type: none;
+  padding: 0;
+}
+
+.coming-soon li {
+  padding: 0.5rem 0;
+  padding-left: 1.5rem;
+  position: relative;
+}
+
+.coming-soon li:before {
+  content: "▹";
+  color: #00ffcc;
+  position: absolute;
+  left: 0;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+/* Contact Section */
+.contact {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.contact h2 {
+  color: #00ffcc;
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.contact p {
+  font-size: 1.1rem;
+  margin: 1rem 0;
+  padding: 1rem;
+  background: rgba(26, 26, 26, 0.8);
+  backdrop-filter: blur(10px);
+  border-radius: 8px;
+  border-left: 3px solid #00ffcc;
+  transition: all 0.3s ease;
+}
+
+.contact p:hover {
+  transform: translateX(5px);
+  background: rgba(26, 26, 26, 0.95);
+}
+
+/* Links */
+a {
+  color: #00ffcc;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+a:hover {
+  color: #00e6b8;
+  text-decoration: underline;
+}
+
+code {
+  background: rgba(42, 42, 42, 0.8);
+  padding: 0.2rem 0.5rem;
+  border-radius: 3px;
+  color: #00ffcc;
+  font-family: 'Courier New', monospace;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 1.5rem;
+  background-color: rgba(26, 26, 26, 0.95);
+  backdrop-filter: blur(10px);
+  margin-top: 3rem;
+  border-top: 1px solid rgba(0, 255, 204, 0.2);
+}
+
+footer p {
+  margin: 0;
+  color: #888;
+}
+
+/* In Progress Badge Styling */
+.cert-badge.in-progress {
+  opacity: 0.7;
+  cursor: default;
+}
+
+.cert-badge.in-progress:hover {
+  transform: translateY(-5px);
+  border-color: #888;
+  box-shadow: 0 10px 30px rgba(136, 136, 136, 0.2);
+}
+
+.cert-status {
+  display: block;
+  color: #888;
+  font-size: 0.8rem;
+  font-style: italic;
+  margin-top: 0.25rem;
+}
+
+/* Achievements Section */
+.achievements {
+  margin-top: 3rem;
+  padding: 2rem;
+  background: rgba(26, 26, 26, 0.8);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  border: 1px solid rgba(0, 255, 204, 0.2);
+}
+
+.achievements h2 {
+  color: #00ffcc;
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 1.8rem;
+}
+
+.achievement-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.achievement-card {
+  background: rgba(26, 26, 26, 0.6);
+  padding: 1.5rem;
+  border-radius: 8px;
+  border-left: 3px solid #00ffcc;
+  transition: all 0.3s ease;
+}
+
+.achievement-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 255, 204, 0.2);
+  background: rgba(26, 26, 26, 0.9);
+}
+
+.achievement-card h3 {
+  color: #00ffcc;
+  margin-top: 0;
+  font-size: 1.2rem;
+}
+
+.achievement-card p {
+  margin: 0.5rem 0 0 0;
+  color: #f5f5f5;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  header nav {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  nav ul {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .hero {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  main {
+    padding: 1rem;
+  }
+  
+  .cert-badges {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .achievement-grid {
+    grid-template-columns: 1fr;
+  }
+}
         <p>
           I'm an aspiring cybersecurity professional focused on network defense, ethical hacking, and digital forensics. I enjoy solving complex problems and diving deep into system internals and vulnerabilities.
         </p>
